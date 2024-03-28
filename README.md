@@ -209,3 +209,16 @@ Also, make sure to join our <a href="https://zenml.io/slack" target="_blank">
     <img width="15" src="https://cdn3.iconfinder.com/data/icons/logos-and-brands-adobe/512/306_Slack-512.png" alt="Slack"/>
     <b>Slack Community</b> 
 </a> to become part of the ZenML family!
+# Avancement
+
+## Progress
+
+- Feature engineering pipeline: Completed.
+- Training pipeline: To be executed.
+
+## Instructions
+
+To run the training pipeline:
+1. modify run.py to have the possibility to run python .\run.py --training-pipeline
+2. create inference
+3. run inference
