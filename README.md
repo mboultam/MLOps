@@ -219,6 +219,9 @@ Also, make sure to join our <a href="https://zenml.io/slack" target="_blank">
 ## Instructions
 
 To run the training pipeline:
-1. modify run.py to have the possibility to run python .\run.py --training-pipeline
+1. modify run.py to have the possibility to run python .\run.py --training-pipeline 
 2. create inference
 3. run inference
+
+## reference : 
+https://docs.zenml.io/user-guide/advanced-guide/pipelining-features/compose-pipelines
