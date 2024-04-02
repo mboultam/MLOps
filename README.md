@@ -225,3 +225,55 @@ To run the training pipeline:
 
 ## reference : 
 https://docs.zenml.io/user-guide/advanced-guide/pipelining-features/compose-pipelines
+
+## where to start : have a little help to link the pipeline feature engineering to the pipeline training : 
+
+It seems like you want to compose ZenML pipelines, where one pipeline can call another pipeline and utilize its steps without triggering a separate run. This is indeed possible in ZenML, and you can achieve it as demonstrated in the example you provided. 
+
+Here's a breakdown of how it works: 
+
+Define each pipeline using the @pipeline decorator. 
+
+Within each pipeline function, you can call other pipelines or steps as needed. 
+
+When one pipeline calls another, it does not trigger a separate run of the child pipeline. Instead, it invokes the steps of the child pipeline within the context of the parent pipeline. 
+
+Here's your example with some annotations: 
+
+pythonCopy code 
+
+from zenml import pipeline 
+ 
+@pipeline 
+def data_loading_pipeline(mode: str): 
+if mode == "train": 
+data = training_data_loader_step() 
+else: 
+data = test_data_loader_step() 
+ 
+processed_data = preprocessing_step(data) 
+return processed_data 
+ 
+ 
+@pipeline 
+def training_pipeline(): 
+# Call the data_loading_pipeline with mode="train" 
+training_data = data_loading_pipeline(mode="train") 
+ 
+# Use the output of data_loading_pipeline in training_step 
+model = training_step(data=training_data) 
+ 
+# Call the data_loading_pipeline with mode="test" 
+test_data = data_loading_pipeline(mode="test") 
+ 
+# Use the output of data_loading_pipeline in evaluation_step 
+evaluation_step(model=model, data=test_data) 
+ 
+
+This way, you can organize your pipelines in a modular and reusable manner, making it easier to manage complex workflows. Each pipeline focuses on a specific task, and you can combine them as needed to create more comprehensive pipelines. 
+
+ 
+
+ 
+
+ 
