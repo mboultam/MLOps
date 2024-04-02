@@ -226,22 +226,21 @@ To run the training pipeline:
 ## reference : 
 https://docs.zenml.io/user-guide/advanced-guide/pipelining-features/compose-pipelines
 
-## where to start : have a little help to link the pipeline feature engineering to the pipeline training : 
+## Getting Started: Linking Pipeline Feature Engineering to Pipeline Training
 
 In ZenML, composing pipelines to utilize the steps of one pipeline within another is a powerful capability. This allows for modular and reusable workflows, enhancing manageability and scalability.
 
 Here's a brief guide on how to achieve this:
 
-Define Pipelines: Use the @pipeline decorator to define each pipeline.
+1. **Define Pipelines:** Use the `@pipeline` decorator to define each pipeline.
 
-Pipeline Invocation: Within a pipeline function, you can call other pipelines or steps as required.
+2. **Pipeline Invocation:** Within a pipeline function, you can call other pipelines or steps as required.
 
-Invocation Context: When one pipeline calls another, it does not trigger a separate run of the child pipeline. Instead, it invokes the steps of the child pipeline within the context of the parent pipeline.
+3. **Invocation Context:** When one pipeline calls another, it does not trigger a separate run of the child pipeline. Instead, it invokes the steps of the child pipeline within the context of the parent pipeline.
 
 Here's an example to illustrate this process:
 
-python
-Copy code
+```python
 from zenml import pipeline
 
 @pipeline
@@ -268,8 +267,6 @@ def training_pipeline():
 
     # Use the output of data_loading_pipeline in evaluation_step
     evaluation_step(model=model, data=test_data)
-By structuring your pipelines in this manner, you can create modular and reusable components, allowing for easier management of complex workflows. Each pipeline focuses on a specific task, and you can combine them as needed to create more comprehensive pipelines.
- 
 
  
 
